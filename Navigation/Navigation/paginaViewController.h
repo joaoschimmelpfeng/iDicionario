@@ -14,6 +14,7 @@
 }
 
 @property NSArray *alfabeto;
+@property NSArray *palavras;
 @property int idVal;
 @property BOOL clicked;
 @end
