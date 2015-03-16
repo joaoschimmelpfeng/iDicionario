@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LetraAViewController : UIViewController
+@interface paginaViewController : UIViewController
+{
+    
+}
 
+@property NSArray *alfabeto;
+@property int idVal;
+@property BOOL clicked;
 @end
