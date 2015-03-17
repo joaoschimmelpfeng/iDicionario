@@ -20,6 +20,8 @@
 		27156F7018B76AF50053A99C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27156F6E18B76AF50053A99C /* InfoPlist.strings */; };
 		27156F7218B76AF50053A99C /* NavigationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27156F7118B76AF50053A99C /* NavigationTests.m */; };
 		27156F7D18BA89430053A99C /* paginaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27156F7C18BA89430053A99C /* paginaViewController.m */; };
+		E68C7C771AB88EAC00469AEC /* dicionarioTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C7C761AB88EAC00469AEC /* dicionarioTableViewController.m */; };
+		E68C7C7A1AB8910F00469AEC /* dicionarioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C7C791AB8910F00469AEC /* dicionarioTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,10 @@
 		27156F7118B76AF50053A99C /* NavigationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavigationTests.m; sourceTree = "<group>"; };
 		27156F7B18BA89430053A99C /* paginaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = paginaViewController.h; sourceTree = "<group>"; };
 		27156F7C18BA89430053A99C /* paginaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = paginaViewController.m; sourceTree = "<group>"; };
+		E68C7C751AB88EAC00469AEC /* dicionarioTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dicionarioTableViewController.h; sourceTree = "<group>"; };
+		E68C7C761AB88EAC00469AEC /* dicionarioTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dicionarioTableViewController.m; sourceTree = "<group>"; };
+		E68C7C781AB8910F00469AEC /* dicionarioTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dicionarioTableViewCell.h; sourceTree = "<group>"; };
+		E68C7C791AB8910F00469AEC /* dicionarioTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dicionarioTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +122,10 @@
 				27156F5318B76AF50053A99C /* Supporting Files */,
 				27156F7B18BA89430053A99C /* paginaViewController.h */,
 				27156F7C18BA89430053A99C /* paginaViewController.m */,
+				E68C7C751AB88EAC00469AEC /* dicionarioTableViewController.h */,
+				E68C7C761AB88EAC00469AEC /* dicionarioTableViewController.m */,
+				E68C7C781AB8910F00469AEC /* dicionarioTableViewCell.h */,
+				E68C7C791AB8910F00469AEC /* dicionarioTableViewCell.m */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -197,6 +207,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Vinicius Miana";
 				TargetAttributes = {
+					27156F4818B76AF50053A99C = {
+						DevelopmentTeam = M6XY5G74NR;
+					};
 					27156F6318B76AF50053A99C = {
 						TestTargetID = 27156F4818B76AF50053A99C;
 					};
@@ -247,7 +260,9 @@
 			files = (
 				27156F5D18B76AF50053A99C /* MackenzieAppDelegate.m in Sources */,
 				27156F7D18BA89430053A99C /* paginaViewController.m in Sources */,
+				E68C7C771AB88EAC00469AEC /* dicionarioTableViewController.m in Sources */,
 				27156F5918B76AF50053A99C /* main.m in Sources */,
+				E68C7C7A1AB8910F00469AEC /* dicionarioTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

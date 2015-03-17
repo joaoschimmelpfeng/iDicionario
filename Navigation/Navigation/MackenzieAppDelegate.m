@@ -8,6 +8,7 @@
 
 #import "MackenzieAppDelegate.h"
 #import "paginaViewController.h"
+#import "dicionarioTableViewController.h"
 
 @implementation MackenzieAppDelegate
 
@@ -18,13 +19,21 @@
                                            bundle:nil];
     viewController.idVal = 0;
     
+    UITabBarController *tabBar = [[UITabBarController alloc] init];
+    [tabBar setTitle:@"Dicionario"];
+    
     self.navigationController = [[UINavigationController alloc]
                                  initWithRootViewController:viewController];
+    
+    dicionarioTableViewController *table = [[dicionarioTableViewController alloc] init];
+    
+    [tabBar addChildViewController:self.navigationController];
+    [table setTitle:@"lista"];
+    [tabBar addChildViewController:table];
+    
     self.window = [[UIWindow alloc]
                    initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = self.navigationController;
-
-
+    self.window.rootViewController = tabBar;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
