@@ -106,13 +106,9 @@ paginaViewController *proximo;
         proximo.idVal = idVal+1;
     }
     
-    
-    
-    [self.navigationController pushViewController:proximo
-                                         animated:YES];
-    
     NSMutableArray *viewArray =  [NSMutableArray arrayWithArray:[self.navigationController childViewControllers]];
     [viewArray removeObject:self];
+    [viewArray addObject:proximo];
     [self.navigationController setViewControllers:viewArray];
     
     NSLog(@"%lu", [[self.navigationController childViewControllers] count]);
@@ -143,9 +139,9 @@ paginaViewController *proximo;
     proximo.idVal = idTo;
     
     
-    [self.navigationController pushViewController:proximo animated:true];
     NSMutableArray *viewArray =  [NSMutableArray arrayWithArray:[self.navigationController childViewControllers]];
     [viewArray removeObject:self];
+    [viewArray addObject:proximo];
     [self.navigationController setViewControllers:viewArray animated:NO];
     clicked = true;
     
