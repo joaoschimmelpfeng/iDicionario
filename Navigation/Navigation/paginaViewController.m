@@ -15,13 +15,15 @@ UILabel *texto;
 UITextField *textField;
 UIBarButtonItem *btn;
 UIBarButtonItem *btn2;
+UIPanGestureRecognizer *pan;
 BOOL clicked;
 paginaViewController *proximo;
 
 -(void) viewDidLoad
 {
     [super viewDidLoad];
-
+    self.view.userInteractionEnabled = NO;
+    
      clicked = false;
     
       btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(backPressed:)];
@@ -70,6 +72,11 @@ paginaViewController *proximo;
     return NO;
 }
 
+-(void) mover
+{
+    imgView.frame = CGRectMake([pan locationInView:self.view].x - 50 , [pan locationInView:self.view].y - 50, 100, 100);
+}
+
 -(void) viewWillAppear:(BOOL)animated
 {
 
@@ -99,6 +106,11 @@ paginaViewController *proximo;
     imgView = [[UIImageView alloc] init];
     [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.png",idVal]]];
     imgView.frame = CGRectMake(self.view.center.x - 50, 50, 100, 100);
+    
+    pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(mover)];
+    [imgView addGestureRecognizer:pan];
+    [imgView setUserInteractionEnabled:YES];
+    
     
     [UIView animateWithDuration:2 animations:^
     {

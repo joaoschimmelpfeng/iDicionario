@@ -18,5 +18,6 @@
 @property int idVal;
 
 -(void) editar;
+-(void) mover;
 
 @end
