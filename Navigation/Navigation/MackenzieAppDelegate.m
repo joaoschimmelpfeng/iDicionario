@@ -20,7 +20,6 @@
     viewController.idVal = 0;
     
     UITabBarController *tabBar = [[UITabBarController alloc] init];
-    [tabBar setTitle:@"Dicionario"];
     
     self.navigationController = [[UINavigationController alloc]
                                  initWithRootViewController:viewController];
@@ -30,6 +29,9 @@
     [tabBar addChildViewController:self.navigationController];
     [table setTitle:@"lista"];
     [tabBar addChildViewController:table];
+    
+    
+    
     
     self.window = [[UIWindow alloc]
                    initWithFrame:[[UIScreen mainScreen] bounds]];

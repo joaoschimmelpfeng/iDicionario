@@ -10,4 +10,6 @@
 
 @interface dicionarioTableViewCell : UITableViewCell
 @property UILabel *letraLabel;
+
+-(instancetype) initWithCell:(NSString *)texto;
 @end

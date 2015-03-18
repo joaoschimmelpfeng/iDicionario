@@ -14,10 +14,12 @@
 @end
 
 @implementation dicionarioTableViewController
+@synthesize dicionario;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    dicionario = [Dicionario getInstance];
+    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 50, 0);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -45,12 +47,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [dicionario getLetterCount];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    dicionarioTableViewCell *cell = [[dicionarioTableViewCell alloc] init];
+    dicionarioTableViewCell *cell = [[dicionarioTableViewCell alloc] initWithCell:[dicionario getWordAt:indexPath.row]];
     
     return cell;
 }

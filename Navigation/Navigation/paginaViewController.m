@@ -9,8 +9,10 @@
 #import "paginaViewController.h"
 
 @implementation paginaViewController
-@synthesize alfabeto,palavras,idVal;
+@synthesize idVal,dicionario;
 UIImageView *imgView;
+UILabel *texto;
+UITextField *textField;
 UIBarButtonItem *btn;
 UIBarButtonItem *btn2;
 BOOL clicked;
@@ -20,21 +22,18 @@ paginaViewController *proximo;
 {
     [super viewDidLoad];
 
-    alfabeto = [NSArray arrayWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"X",@"Y",@"W",@"Z", nil];
-    palavras = [NSArray arrayWithObjects:@"Abobora",@"Banana",@"Caqui",@"Damasco",@"Esperto",@"Falso",@"Gato",@"Heroi",@"Incrivel",@"Jato",@"Kilobyte",@"Luz",@"Marte",@"Neve",@"Ontodologia",@"Pato",@"Quina",@"Rato",@"Sapato",@"Trovão",@"Uva",@"Viajar",@"Xoxo",@"Yakuza",@"Word",@"Zinco", nil];
-    self.view.userInteractionEnabled = FALSE;
-    clicked = false;
+     clicked = false;
     
       btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(backPressed:)];
       btn2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(next:)];
-//    if(idVal == 0)
-//    {
-//        [btn setTitle:@"Z"];
-//    }
-//    else
-//    {
-//        [btn setTitle: [alfabeto objectAtIndex:idVal-1 ]];
-//    }
+    
+    UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editar)];
+    
+    NSArray *arr = [NSArray arrayWithObject:item1];
+    [self setToolbarItems:arr animated:NO];
+    
+    dicionario = [Dicionario getInstance];
+    self.navigationController.toolbarHidden = false;
     
     self.navigationItem.leftBarButtonItem = btn;
     self.navigationItem.rightBarButtonItem = btn2;
@@ -43,21 +42,38 @@ paginaViewController *proximo;
     
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    
-//    paginaViewController *pagina2 = [[paginaViewController alloc] init];
-//    
-//    UITabBarItem *customItem1 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:0];
-//    UITabBarItem *customItem2 = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:1];
-//    
-//    [self.tabBarController setViewControllers:[NSArray arrayWithObjects:self.navigationController,pagina2, nil] ];
-//    [self.tabBarController setTabBarItem:customItem1];
-//    [self.tabBarController setTabBarItem:customItem2];
+}
+
+
+-(void) editar
+{
+    if(!clicked)
+    {
+     [textField setHidden:FALSE];
+     [texto setHidden:TRUE];
+     [textField becomeFirstResponder];
+     clicked = true;
+    }
+    else
+    {
+     [textField setHidden:TRUE];
+     [texto setText:textField.text];
+     [texto setHidden:FALSE];
+     clicked = false;
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self editar];
+    return NO;
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
 
-    self.title = [alfabeto objectAtIndex:idVal];
+    self.title = [dicionario getLetterAt:idVal];
     self.view.userInteractionEnabled = TRUE;
     [self.navigationController setTitle:@"Dicionario"];
     
@@ -68,11 +84,17 @@ paginaViewController *proximo;
     
     self.navigationItem.rightBarButtonItem=next;
     
-    UILabel *texto = [[UILabel alloc] init];
-    [texto setText:[palavras objectAtIndex:idVal]];
+    texto = [[UILabel alloc] init];
+    [texto setText:[dicionario getWordAt:idVal]];
     [texto sizeToFit];
      texto.center = self.view.center;
     
+    textField = [[UITextField alloc] init];
+    [textField setText:texto.text];
+    [textField sizeToFit];
+    textField.center = self.view.center;
+    textField.delegate = self;
+    [textField setHidden:TRUE];
     
     imgView = [[UIImageView alloc] init];
     [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.png",idVal]]];
@@ -86,6 +108,7 @@ paginaViewController *proximo;
     [imgView setHidden:false];
     
     [self.view addSubview:texto];
+    [self.view addSubview:textField];
     [self.view addSubview:imgView];
 }
 
@@ -112,21 +135,16 @@ paginaViewController *proximo;
     [self.navigationController setViewControllers:viewArray];
     
     NSLog(@"%lu", [[self.navigationController childViewControllers] count]);
-    clicked = true;
 }
 
 -(void)backPressed: (id)sender
 {
     [btn setEnabled:NO];
-    if(clicked)
-    {
-        return;
-    }
     
     NSInteger idTo = 0;
     if(idVal == 0)
     {
-      idTo = [alfabeto count]-1;
+      idTo = [dicionario getLetterCount]-1;
     }
     else
     {
@@ -143,8 +161,7 @@ paginaViewController *proximo;
     [viewArray removeObject:self];
     [viewArray addObject:proximo];
     [self.navigationController setViewControllers:viewArray animated:NO];
-    clicked = true;
-    
 }
+
 
 @end

@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Dicionario.h"
 
-@interface paginaViewController : UIViewController
+@interface paginaViewController : UIViewController<UITextFieldDelegate>
 {
     
 }
 
-@property NSArray *alfabeto;
-@property NSArray *palavras;
+@property Dicionario *dicionario;
 @property int idVal;
+
+-(void) editar;
 
 @end

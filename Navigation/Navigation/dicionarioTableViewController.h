@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Dicionario.h"
 @interface dicionarioTableViewController : UITableViewController
-
+@property Dicionario *dicionario;
 @end

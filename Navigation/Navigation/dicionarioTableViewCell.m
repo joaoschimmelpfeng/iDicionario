@@ -15,18 +15,20 @@
     
 }
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+-(instancetype) initWithCell:(NSString *)texto
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self)
-    {
-        self.letraLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 10, 300, 30)];
-        self.letraLabel.textColor = [UIColor blackColor];
-        self.letraLabel.font = [UIFont fontWithName:@"Arial" size:12.0f];
+ self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"celula"];
+ if (self)
+ {
+  self.letraLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 10, 300, 30)];
+  self.letraLabel.textColor = [UIColor blackColor];
+  self.letraLabel.text = texto;
+  self.letraLabel.font = [UIFont fontWithName:@"Arial" size:12.0f];
         
-        [self addSubview:self.letraLabel];
-    }
+  [self addSubview:self.letraLabel];
+ }
     return self;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
