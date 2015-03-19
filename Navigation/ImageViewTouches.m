@@ -7,16 +7,19 @@
 //
 
 #import "ImageViewTouches.h"
+#import <Realm/Realm.h>
+#import "persistenceObject.h"
 
 @implementation ImageViewTouches
-@synthesize isEditing,root;
+@synthesize isEditing,root,idVal;
 
-- (id)init
+- (id)initWithVal:(int)val
 {
     self = [super init];
     if (self)
     {
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(mover:)];
+        idVal = val;
         
         [self addGestureRecognizer:pan];
         self.userInteractionEnabled = YES;
@@ -30,6 +33,16 @@
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     [self setImage:image];
     [self setNeedsDisplay];
+    
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    persistenceObject *imgSave = [[persistenceObject alloc] init];
+    [imgSave setImageToSave:[NSData dataWithData:UIImagePNGRepresentation(image)]];
+    [imgSave setIdVal:idVal];
+    [realm beginWriteTransaction];
+    [realm addObject:imgSave];
+    [realm commitWriteTransaction];
+    
+    
     [root dismissViewControllerAnimated:YES completion:NULL];
 }
 

@@ -12,7 +12,9 @@
 
 @property BOOL isEditing;
 @property UIViewController *root;
+@property int idVal;
 
+- (id)initWithVal:(int)val;
 -(void) mover:(UIPanGestureRecognizer *)pan;
 
 @end

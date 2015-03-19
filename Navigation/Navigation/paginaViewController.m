@@ -8,6 +8,8 @@
 
 #import "paginaViewController.h"
 #import "ImageViewTouches.h"
+#import "persistenceObject.h"
+#import <Realm/Realm.h>
 
 @implementation paginaViewController
 @synthesize idVal,dicionario;
@@ -64,8 +66,18 @@ paginaViewController *proximo;
     textField.delegate = self;
     [textField setHidden:TRUE];
     
-    imgView = [[ImageViewTouches alloc] init];
-    [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.png",idVal]]];
+    imgView = [[ImageViewTouches alloc] initWithVal:idVal];
+    
+    RLMResults *resultados = [persistenceObject objectsWhere:@"idVal == %i", idVal];
+    if([resultados count] > 0 )
+    {
+      persistenceObject *obj =  [resultados objectAtIndex:0];
+     [imgView setImage:[UIImage imageWithData:obj.imageToSave]];
+    }
+    else
+    {
+     [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.png",idVal]]];
+    }
     imgView.frame = CGRectMake(self.view.center.x - 50, 50, 100, 100);
     
     [UIView animateWithDuration:2 animations:^
