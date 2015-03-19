@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ImageViewTouches : UIImageView
+@interface ImageViewTouches : UIImageView <UINavigationControllerDelegate ,UIImagePickerControllerDelegate>
+
+@property BOOL isEditing;
+@property UIViewController *root;
 
 -(void) mover:(UIPanGestureRecognizer *)pan;
 

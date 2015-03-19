@@ -17,6 +17,7 @@ UITextField *textField;
 UIBarButtonItem *btn;
 UIBarButtonItem *btn2;
 UIPanGestureRecognizer *pan;
+UIBarButtonItem *item1;
 BOOL clicked;
 paginaViewController *proximo;
 
@@ -30,7 +31,7 @@ paginaViewController *proximo;
       btn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(backPressed:)];
       btn2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(next:)];
     
-    UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editar)];
+    item1 = [[UIBarButtonItem alloc] initWithTitle:@"Editar" style:UIBarButtonItemStyleBordered target:self action:@selector(editar)];
     
     NSArray *arr = [NSArray arrayWithObject:item1];
     [self setToolbarItems:arr animated:NO];
@@ -41,10 +42,42 @@ paginaViewController *proximo;
     self.navigationItem.leftBarButtonItem = btn;
     self.navigationItem.rightBarButtonItem = btn2;
     
-    
-    
-    
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    //Didload movido
+    [imgView setHidden:true];
+    
+    UIBarButtonItem *next = [[UIBarButtonItem alloc]
+                             initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(next:)];
+    
+    self.navigationItem.rightBarButtonItem=next;
+    
+    texto = [[UILabel alloc] init];
+    [texto setText:[dicionario getWordAt:idVal]];
+    [texto sizeToFit];
+    texto.center = self.view.center;
+    
+    textField = [[UITextField alloc] init];
+    [textField setText:texto.text];
+    [textField sizeToFit];
+    textField.center = self.view.center;
+    textField.delegate = self;
+    [textField setHidden:TRUE];
+    
+    imgView = [[ImageViewTouches alloc] init];
+    [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.png",idVal]]];
+    imgView.frame = CGRectMake(self.view.center.x - 50, 50, 100, 100);
+    
+    [UIView animateWithDuration:2 animations:^
+     {
+         imgView.frame = CGRectMake(self.view.center.x - 50, 100, 100, 100);
+     }];
+    
+    [imgView setHidden:false];
+    
+    [self.view addSubview:texto];
+    [self.view addSubview:textField];
+    [self.view addSubview:imgView];
 }
 
 
@@ -55,6 +88,8 @@ paginaViewController *proximo;
      [textField setHidden:FALSE];
      [texto setHidden:TRUE];
      [textField becomeFirstResponder];
+     item1.title = @"Terminar";
+     imgView.isEditing = true;
      clicked = true;
     }
     else
@@ -62,6 +97,8 @@ paginaViewController *proximo;
      [textField setHidden:TRUE];
      [texto setText:textField.text];
      [texto setHidden:FALSE];
+        imgView.isEditing = false;
+     item1.title = @"Editar";
      clicked = false;
     }
 }
@@ -69,7 +106,6 @@ paginaViewController *proximo;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    [self editar];
     return NO;
 }
 
@@ -84,48 +120,6 @@ paginaViewController *proximo;
     self.title = [dicionario getLetterAt:idVal];
     self.view.userInteractionEnabled = TRUE;
     [self.navigationController setTitle:@"Dicionario"];
-    
-    [imgView setHidden:true];
-    
-    UIBarButtonItem *next = [[UIBarButtonItem alloc]
-                             initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(next:)];
-    
-    self.navigationItem.rightBarButtonItem=next;
-    
-    texto = [[UILabel alloc] init];
-    [texto setText:[dicionario getWordAt:idVal]];
-    [texto sizeToFit];
-     texto.center = self.view.center;
-    
-    textField = [[UITextField alloc] init];
-    [textField setText:texto.text];
-    [textField sizeToFit];
-    textField.center = self.view.center;
-    textField.delegate = self;
-    [textField setHidden:TRUE];
-    
-    imgView = [[ImageViewTouches alloc] init];
-    [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.png",idVal]]];
-    imgView.frame = CGRectMake(self.view.center.x - 50, 50, 100, 100);
-//        
-//    pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(mover)];
-//    
-//    UIGestureRecognizer *gesture = [[UIGestureRecognizer alloc] init];
-//    
-//    [imgView addGestureRecognizer:pan];
-//    [imgView setUserInteractionEnabled:YES];
-    
-    
-    [UIView animateWithDuration:2 animations:^
-    {
-     imgView.frame = CGRectMake(self.view.center.x - 50, 100, 100, 100);
-    }];
-    
-    [imgView setHidden:false];
-    
-    [self.view addSubview:texto];
-    [self.view addSubview:textField];
-    [self.view addSubview:imgView];
 }
 
 -(void)next:(id)sender
