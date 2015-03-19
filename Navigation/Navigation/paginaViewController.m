@@ -79,6 +79,10 @@ paginaViewController *proximo;
      [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.png",idVal]]];
     }
     imgView.frame = CGRectMake(self.view.center.x - 50, 50, 100, 100);
+    imgView.layer.cornerRadius = imgView.frame.size.height /2;
+    imgView.layer.masksToBounds = YES;
+    imgView.layer.borderWidth = 0;
+    
     
     [UIView animateWithDuration:2 animations:^
      {
