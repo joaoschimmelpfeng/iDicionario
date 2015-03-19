@@ -15,6 +15,7 @@
 @property int idVal;
 
 - (id)initWithVal:(int)val;
+-(void) redimensionar:(UIPinchGestureRecognizer *) pinch;
 -(void) mover:(UIPanGestureRecognizer *)pan;
 
 @end

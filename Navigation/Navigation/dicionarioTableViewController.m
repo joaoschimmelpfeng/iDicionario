@@ -53,7 +53,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     dicionarioTableViewCell *cell = [[dicionarioTableViewCell alloc] initWithCell:[dicionario getWordAt:indexPath.row]];
-    
     return cell;
 }
 /*

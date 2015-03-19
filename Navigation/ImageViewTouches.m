@@ -19,13 +19,29 @@
     if (self)
     {
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(mover:)];
+        UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(redimensionar:)];
         idVal = val;
         
         [self addGestureRecognizer:pan];
+        [self addGestureRecognizer:pinch];
         self.userInteractionEnabled = YES;
 
     }
     return self;
+}
+
+-(void) redimensionar:(UIPinchGestureRecognizer *)pinch
+{
+ if ([pinch state] == UIGestureRecognizerStateEnded)
+ {
+  self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 100, 100);
+  self.layer.cornerRadius = self.frame.size.height /2;
+ }
+ else
+ {
+  self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 200, 200);
+  self.layer.cornerRadius = self.frame.size.height /2;
+ }
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -61,17 +77,13 @@
          
      }];
  }
- else
- {
-  self.frame = CGRectMake(self.frame.origin.x - 50, self.frame.origin.y - 50, 200, 200);
- }
 }
 
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
  if(!isEditing)
  {
-  self.frame = CGRectMake(self.frame.origin.x + 50, self.frame.origin.y + 50, 100, 100);
+  self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 100, 100);
  }
 }
 

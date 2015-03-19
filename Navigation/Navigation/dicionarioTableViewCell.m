@@ -24,7 +24,7 @@
   self.letraLabel.textColor = [UIColor blackColor];
   self.letraLabel.text = texto;
   self.letraLabel.font = [UIFont fontWithName:@"Arial" size:12.0f];
-        
+
   [self addSubview:self.letraLabel];
  }
     return self;
