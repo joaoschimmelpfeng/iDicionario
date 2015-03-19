@@ -23,6 +23,7 @@
 		E65D95B01ABA07AE00AA342B /* Dicionario.m in Sources */ = {isa = PBXBuildFile; fileRef = E65D95AF1ABA07AE00AA342B /* Dicionario.m */; };
 		E68C7C771AB88EAC00469AEC /* dicionarioTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C7C761AB88EAC00469AEC /* dicionarioTableViewController.m */; };
 		E68C7C7A1AB8910F00469AEC /* dicionarioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E68C7C791AB8910F00469AEC /* dicionarioTableViewCell.m */; };
+		E6ADA9651ABB432E00E2C4B3 /* ImageViewTouches.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ADA9641ABB432E00E2C4B3 /* ImageViewTouches.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		E68C7C761AB88EAC00469AEC /* dicionarioTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dicionarioTableViewController.m; sourceTree = "<group>"; };
 		E68C7C781AB8910F00469AEC /* dicionarioTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dicionarioTableViewCell.h; sourceTree = "<group>"; };
 		E68C7C791AB8910F00469AEC /* dicionarioTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dicionarioTableViewCell.m; sourceTree = "<group>"; };
+		E6ADA9631ABB432E00E2C4B3 /* ImageViewTouches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageViewTouches.h; path = ../ImageViewTouches.h; sourceTree = "<group>"; };
+		E6ADA9641ABB432E00E2C4B3 /* ImageViewTouches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageViewTouches.m; path = ../ImageViewTouches.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +132,8 @@
 				E68C7C761AB88EAC00469AEC /* dicionarioTableViewController.m */,
 				E68C7C781AB8910F00469AEC /* dicionarioTableViewCell.h */,
 				E68C7C791AB8910F00469AEC /* dicionarioTableViewCell.m */,
+				E6ADA9631ABB432E00E2C4B3 /* ImageViewTouches.h */,
+				E6ADA9641ABB432E00E2C4B3 /* ImageViewTouches.m */,
 				E65D95AE1ABA07AE00AA342B /* Dicionario.h */,
 				E65D95AF1ABA07AE00AA342B /* Dicionario.m */,
 			);
@@ -265,6 +270,7 @@
 			files = (
 				27156F5D18B76AF50053A99C /* MackenzieAppDelegate.m in Sources */,
 				27156F7D18BA89430053A99C /* paginaViewController.m in Sources */,
+				E6ADA9651ABB432E00E2C4B3 /* ImageViewTouches.m in Sources */,
 				E65D95B01ABA07AE00AA342B /* Dicionario.m in Sources */,
 				E68C7C771AB88EAC00469AEC /* dicionarioTableViewController.m in Sources */,
 				27156F5918B76AF50053A99C /* main.m in Sources */,

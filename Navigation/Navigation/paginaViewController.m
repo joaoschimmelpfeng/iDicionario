@@ -7,10 +7,11 @@
 //
 
 #import "paginaViewController.h"
+#import "ImageViewTouches.h"
 
 @implementation paginaViewController
 @synthesize idVal,dicionario;
-UIImageView *imgView;
+ImageViewTouches *imgView;
 UILabel *texto;
 UITextField *textField;
 UIBarButtonItem *btn;
@@ -103,13 +104,16 @@ paginaViewController *proximo;
     textField.delegate = self;
     [textField setHidden:TRUE];
     
-    imgView = [[UIImageView alloc] init];
+    imgView = [[ImageViewTouches alloc] init];
     [imgView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.png",idVal]]];
     imgView.frame = CGRectMake(self.view.center.x - 50, 50, 100, 100);
-    
-    pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(mover)];
-    [imgView addGestureRecognizer:pan];
-    [imgView setUserInteractionEnabled:YES];
+//        
+//    pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(mover)];
+//    
+//    UIGestureRecognizer *gesture = [[UIGestureRecognizer alloc] init];
+//    
+//    [imgView addGestureRecognizer:pan];
+//    [imgView setUserInteractionEnabled:YES];
     
     
     [UIView animateWithDuration:2 animations:^
