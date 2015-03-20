@@ -15,6 +15,7 @@
 
 @implementation dicionarioTableViewController
 @synthesize dicionario,pag;
+UINavigationController *navigation;
 
 -(instancetype) initWithPagina:(paginaViewController *)pagina
 {
@@ -52,11 +53,18 @@
     {
      if([[dicionario getWordAt:i] isEqualToString:textField.text])
      {
-      paginaViewController *pagina = [self.tabBarController.navigationController presentedViewController];
-      NSLog(@"%@",[self.navigationController presentedViewController].title);
-      [pagina goTo:i];
-      find = true;
       [self.tabBarController setSelectedIndex:0];
+      navigation = [self.tabBarController selectedViewController];
+      paginaViewController *proximo = [[paginaViewController alloc]
+                    initWithNibName:nil
+                    bundle:NULL];
+      proximo.idVal = i;
+      NSMutableArray *viewArray =  [NSMutableArray arrayWithArray:[self.navigationController  childViewControllers]];
+      [viewArray removeAllObjects];
+      [viewArray addObject:proximo];
+      [navigation setViewControllers:viewArray animated:YES];
+      find = true;
+      
      }
     }
     
