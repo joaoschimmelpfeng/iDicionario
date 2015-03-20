@@ -39,7 +39,7 @@
  }
  else
  {
-  self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 200, 200);
+  self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, 300, 300);
   self.layer.cornerRadius = self.frame.size.height /2;
  }
 }

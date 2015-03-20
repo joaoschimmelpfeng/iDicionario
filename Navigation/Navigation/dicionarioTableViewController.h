@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Dicionario.h"
-@interface dicionarioTableViewController : UITableViewController
+#import "paginaViewController.h"
+
+@interface dicionarioTableViewController : UITableViewController <UITextFieldDelegate>
 @property Dicionario *dicionario;
+@property paginaViewController *pag;
+
+-(instancetype) initWithPagina:(paginaViewController *)pagina;
+
 @end

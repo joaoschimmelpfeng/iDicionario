@@ -19,6 +19,8 @@ UITextField *textField;
 UIBarButtonItem *btn;
 UIBarButtonItem *btn2;
 UIPanGestureRecognizer *pan;
+UIDatePicker *dataTime;
+UILabel *data;
 UIBarButtonItem *item1;
 BOOL clicked;
 paginaViewController *proximo;
@@ -45,6 +47,8 @@ paginaViewController *proximo;
     self.navigationItem.rightBarButtonItem = btn2;
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    
     
     //Didload movido
     [imgView setHidden:true];
@@ -91,6 +95,21 @@ paginaViewController *proximo;
     
     [imgView setHidden:false];
     
+    data = [[UILabel alloc] init];
+    data.text = @"-/-/-";
+    [data sizeToFit];
+    data.center = self.view.center;
+    data.frame = CGRectMake(data.frame.origin.x, data.frame.origin.y + 30, data.frame.size.width, data.frame.size.width);
+    
+    dataTime = [[UIDatePicker alloc] init];
+    [dataTime sizeToFit];
+    dataTime.center = self.view.center;
+    dataTime.frame = CGRectMake(dataTime.frame.origin.x, dataTime.frame.origin.y + 100, dataTime.frame.size.width, dataTime.frame.size.width);
+    [dataTime setHidden:YES];
+    
+    
+    [self.view addSubview:data];
+    [self.view addSubview:dataTime];
     [self.view addSubview:texto];
     [self.view addSubview:textField];
     [self.view addSubview:imgView];
@@ -104,6 +123,8 @@ paginaViewController *proximo;
      [textField setHidden:FALSE];
      [texto setHidden:TRUE];
      [textField becomeFirstResponder];
+     [dataTime setHidden:NO];
+     [data setHidden:YES];
      item1.title = @"Terminar";
      imgView.isEditing = true;
      clicked = true;
@@ -113,7 +134,15 @@ paginaViewController *proximo;
      [textField setHidden:TRUE];
      [texto setText:textField.text];
      [texto setHidden:FALSE];
-        imgView.isEditing = false;
+     [dataTime setHidden:YES];
+     [data setHidden:NO];
+     NSDateFormatter *formater = [[NSDateFormatter alloc] init];
+     [formater setDateStyle:NSDateFormatterShortStyle];
+     data.text = [formater stringFromDate:[dataTime date]];
+        [data sizeToFit];
+        data.center = self.view.center;
+        data.frame = CGRectMake(data.frame.origin.x, data.frame.origin.y + 30, data.frame.size.width, data.frame.size.width);
+     imgView.isEditing = false;
      item1.title = @"Editar";
      clicked = false;
     }
@@ -155,12 +184,26 @@ paginaViewController *proximo;
         proximo.idVal = idVal+1;
     }
     
-    NSMutableArray *viewArray =  [NSMutableArray arrayWithArray:[self.navigationController childViewControllers]];
-    [viewArray removeObject:self];
-    [viewArray addObject:proximo];
-    [self.navigationController setViewControllers:viewArray];
+    
+     NSMutableArray *viewArray =  [NSMutableArray arrayWithArray:[self.navigationController  childViewControllers]];
+     [viewArray removeAllObjects];
+     [viewArray addObject:proximo];
+    [self.navigationController setViewControllers:viewArray animated:YES];
     
     NSLog(@"%lu", [[self.navigationController childViewControllers] count]);
+}
+
+-(void) goTo:(int)val
+{
+    NSLog(@"aqui");
+    proximo = [[paginaViewController alloc]
+               initWithNibName:nil
+               bundle:NULL];
+    proximo.idVal = val;
+    NSMutableArray *viewArray =  [NSMutableArray arrayWithArray:[self.navigationController  childViewControllers]];
+    [viewArray removeAllObjects];
+    [viewArray addObject:proximo];
+    [self.navigationController setViewControllers:viewArray animated:YES];
 }
 
 -(void)backPressed: (id)sender
@@ -186,7 +229,7 @@ paginaViewController *proximo;
     NSMutableArray *viewArray =  [NSMutableArray arrayWithArray:[self.navigationController childViewControllers]];
     [viewArray removeObject:self];
     [viewArray addObject:proximo];
-    [self.navigationController setViewControllers:viewArray animated:NO];
+    [self.navigationController setViewControllers:viewArray animated:YES];
 }
 
 

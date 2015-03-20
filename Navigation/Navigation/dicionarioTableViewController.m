@@ -8,27 +8,73 @@
 
 #import "dicionarioTableViewController.h"
 #import "dicionarioTableViewCell.h"
-
+#import "paginaViewController.h"
 @interface dicionarioTableViewController ()
 
 @end
 
 @implementation dicionarioTableViewController
-@synthesize dicionario;
+@synthesize dicionario,pag;
+
+-(instancetype) initWithPagina:(paginaViewController *)pagina
+{
+    self = [super init];
+    pag = pagina;
+    return self;
+}
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    dicionario = [Dicionario getInstance];
-    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 50, 0);
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    dicionario = [Dicionario getInstance];
+    UITextField *textField = [[UITextField alloc] init];
+    textField.placeholder = @"Pesquisar";
+    textField.frame = CGRectMake(5,-25,self.view.frame.size.width - 10,20);
+    [textField setBorderStyle:UITextBorderStyleRoundedRect];
+    textField.delegate = self;
+    
+    [self.view addSubview:textField];
+    //UIToolbar *toolbar = [[UIToolbar alloc] init];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(50, 0, 50, 0);
+    
+    [super viewDidLoad];
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    BOOL find = false;
+    for(int i = 0; i < [dicionario getLetterCount];i++)
+    {
+     if([[dicionario getWordAt:i] isEqualToString:textField.text])
+     {
+      paginaViewController *pagina = [self.tabBarController.navigationController presentedViewController];
+      NSLog(@"%@",[self.navigationController presentedViewController].title);
+      [pagina goTo:i];
+      find = true;
+      [self.tabBarController setSelectedIndex:0];
+     }
+    }
+    
+    if(!find)
+    {
+        CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+        animation.keyPath = @"position.x";
+        animation.values = @[ @0, @10, @-10, @10, @0 ];
+        animation.keyTimes = @[ @0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1 ];
+        animation.duration = 0.4;
+        
+        animation.additive = YES;
+        
+        [textField.layer addAnimation:animation forKey:@"shake"];
+        [UIView beginAnimations:@"shake" context:nil];
+    }
+    
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning {
