@@ -15,7 +15,7 @@ static Dicionario *dicionario;
 -(instancetype) initWithMe
 {
  alfabeto = [NSArray arrayWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"X",@"Y",@"W",@"Z", nil];
- palavras = [NSArray arrayWithObjects:@"Abobora",@"Banana",@"Caqui",@"Damasco",@"Esperto",@"Falso",@"Gato",@"Heroi",@"Incrivel",@"Jato",@"Kilobyte",@"Luz",@"Marte",@"Neve",@"Ontodologia",@"Pato",@"Quina",@"Rato",@"Sapato",@"Trovão",@"Uva",@"Viajar",@"Xoxo",@"Yakuza",@"Word",@"Zinco", nil];
+ palavras = [NSArray arrayWithObjects:@"Abobora",@"Banana",@"Caqui",@"Damasco",@"Esperto",@"Falso",@"Gato",@"Heroi",@"Incrivel",@"Jato",@"Kilobyte",@"Luz",@"Marte",@"Neve",@"Odontologia",@"Pato",@"Quina",@"Rato",@"Sapato",@"Trovão",@"Uva",@"Viajar",@"Xoxo",@"Yakuza",@"Word",@"Zinco", nil];
     pointer = 0;
     return self;
 }
